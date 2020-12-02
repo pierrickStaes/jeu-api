@@ -9,6 +9,14 @@ class Api::V1::ObjetsController < Api::V1::BaseController
 	end
 
 	def show
+		@personnage = Personnage.find(params[:personnage_id]) 
+		if @objets.personnage_id  != @personnage.id
+			render json: {
+	          messages: "Wrong object ID",
+	          is_success: false,
+	          data: {}
+	        }, status: :bad_request
+		end
 	end
 
 	def update

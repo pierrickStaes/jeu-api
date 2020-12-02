@@ -1,18 +1,21 @@
 class Api::V1::PersonnagesController < Api::V1::BaseController
 
 	before_action :set_personnage, only: [:show, :update, :destroy]
+	before_action :authenticate_user!, except: [:index, :show]
+
+  	acts_as_token_authentication_handler_for User, except: [:index, :show]
 
 	def index
 		@personnages = Personnage.all
 	end
 
 	def show
-    	@objets = Objet.where(:personnages_id => @personnages.id)
+    	@objets = Objet.where(:personnage_id => @personnages.id)
 	end
 
 	def update
 		if @personnages.update(personnage_params)
-			@objets = Objet.where(:personnages_id => @personnages.id)			
+			@objets = Objet.where(:personnage_id => @personnages.id)			
 			render :action => 'show'
 		else
 			render_error
