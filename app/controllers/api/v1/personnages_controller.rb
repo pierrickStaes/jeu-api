@@ -6,8 +6,8 @@ class Api::V1::PersonnagesController < Api::V1::BaseController
   	acts_as_token_authentication_handler_for User, except: [:index, :show, :create]
 
 	def index
-		if params[:query].present?
-			@personnages = Personnage.search(params[:query])
+		if params.present?
+			@personnages = Personnage.search(params)
 		  else
 			@personnages = Personnage.all
 		  end
