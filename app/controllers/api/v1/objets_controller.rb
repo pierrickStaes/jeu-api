@@ -53,4 +53,53 @@ class Api::V1::ObjetsController < Api::V1::BaseController
 	def render_error
 		render json: {errors: @objets.errors.full_messages}, status: :unprocessable_entity
 	end
+	swagger_controller :objets, "Objets Management"
+
+	  swagger_api :index do
+	    summary "Fetches all objets items"
+	    param :form, :name, :string, :required, "name"
+	    param :form, :stat1, :string, :required, "stat1"
+	    param :form, :stat2, :string, :required, "stat2"
+	   	param :form, :stat2, :string, :required, "rarety"
+	    response :unauthorized
+	    response :not_acceptable, "The request you made is not acceptable"
+	  end
+
+	  swagger_api :show do
+	    summary "Fetches a single personnages item"
+	    param :path, :id, :integer, :optional, "Personnage Id"
+	    response :ok, "Success", :User
+	    response :unauthorized
+	    response :not_acceptable
+	    response :not_found
+	  end
+
+	  swagger_api :create do
+	    summary "Creates a new objet"
+	    param :form, :name, :string, :required, "name"
+	    param :form, :stat1, :string, :required, "stat1"
+	    param :form, :stat2, :string, :required, "stat2"
+	   	param :form, :stat2, :string, :required, "rarety"
+	    response :unauthorized
+	    response :not_acceptable
+	  end
+
+	  swagger_api :update do
+	    summary "Updates an existing User"
+	    param :path, :id, :integer, :required, "Objet Id"
+	    param :form, :name, :string, :required, "name"
+	    param :form, :stat1, :string, :required, "stat1"
+	    param :form, :stat2, :string, :required, "stat2"
+	   	param :form, :stat2, :string, :required, "rarety"
+	    response :unauthorized
+	    response :not_found
+	    response :not_acceptable
+	  end
+
+	  swagger_api :destroy do
+	    summary "Deletes an existing objet item"
+	    param :path, :id, :integer, :optional, "objet Id"
+	    response :unauthorized
+	    response :not_found
+	  end
 end

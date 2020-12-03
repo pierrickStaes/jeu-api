@@ -5,6 +5,10 @@
   "basePath": "http://localhost:3000",
   "apis": [
     {
+      "path": "/api/v1/objets.{format}",
+      "description": "Objets Management"
+    },
+    {
       "path": "/api/v1/personnages.{format}",
       "description": "Personnage Management"
     }

@@ -32,4 +32,15 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
           data: {}
         }, status: :bad_request
     end
-  end
+
+    swagger_controller :register, "User register"
+      swagger_api :create do
+        summary "Create new user with token"
+        param :form, :email, :string, :required, "email"
+        param :form, :password, :string, :required, "password"
+        param :form, :password_confirmation, :string, :required, "password_confirmation"
+        response :unauthorized
+        response :not_acceptable, "The request you made is not acceptable"
+      end
+    
+end
