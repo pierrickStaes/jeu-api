@@ -6,6 +6,9 @@ gem 'simple_token_authentication'
 gem 'jbuilder', '~> 2.7'
 gem 'pundit'
 gem 'devise'
+gem 'swagger-docs'
+gem 'swagger-ui_rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use sqlite3 as the database for Active Record
