@@ -1,9 +1,9 @@
 class Api::V1::PersonnagesController < Api::V1::BaseController
 
 	before_action :set_personnage, only: [:show, :update, :destroy]
-	before_action :authenticate_user!, except: [:index, :show, :create]
+	#before_action :authenticate_user!, except: [:index, :show, :create]
 
-  	acts_as_token_authentication_handler_for User, except: [:index, :show, :create]
+  	#acts_as_token_authentication_handler_for User, except: [:index, :show, :create]
 
 	def index
 		if params[:query].present?
@@ -59,9 +59,9 @@ class Api::V1::PersonnagesController < Api::V1::BaseController
 
 	  swagger_api :index do
 	    summary "Fetches all personnages items"
-	    notes "This lists all the active users"
-	    param :query, :page, :integer, :optional, "Page number"
-	    param :path, :nested_id, :integer, :optional, "Team Id"
+	    param :form, :name, :string, :required, "name"
+	    param :form, :personnage_class, :string, :required, "personnage_class"
+	    param :form, :niveau, :string, :required, "niveau"
 	    response :unauthorized
 	    response :not_acceptable, "The request you made is not acceptable"
 	  end

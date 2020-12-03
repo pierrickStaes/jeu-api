@@ -36,4 +36,16 @@ class Api::V1::SessionsController < Devise::SessionsController
       }, status: :failure
     end
   end
+
+
+  swagger_controller :login, "User login"
+
+      swagger_api :create do
+        summary "Login user, get token"
+        param :form, :email, :string, :required, "email"
+        param :form, :password, :string, :required, "password"
+        response :unauthorized
+        response :not_acceptable, "The request you made is not acceptable"
+      end
+  
 end
