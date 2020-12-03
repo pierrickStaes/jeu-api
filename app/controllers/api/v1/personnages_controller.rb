@@ -1,9 +1,9 @@
 class Api::V1::PersonnagesController < Api::V1::BaseController
 
 	before_action :set_personnage, only: [:show, :update, :destroy]
-	#before_action :authenticate_user!, except: [:index, :show, :create]
+	before_action :authenticate_user!, except: [:index, :show]
 
-  	#acts_as_token_authentication_handler_for User, except: [:index, :show, :create]
+  	acts_as_token_authentication_handler_for User, except: [:index, :show]
 
 	def index
 		if params[:query].present?
